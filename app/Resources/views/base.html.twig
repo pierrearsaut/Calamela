@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <title>{% block title %}{% endblock %}CALAMELA</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('calamela.ico') }}" />
+	<!-- Latest compiled and minified CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+		#message_notice { font-weight: 500; text-align: center;}
+	</style>
+		        {% block stylesheets %}{% endblock %}
+	</head>
+ <body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href='{{ path("homepage") }}'> Calamela</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href='{{ path("homepage") }}'>Acceuil</a></li>
+				<li><a href='{{ path("tournoi") }}'>Tournois</a></li>
+				<li><a href='{{ path("classement") }}'>Classement</a></li>
+				<li><a href='{{ path("shop") }}'>Shop</a></li>
+				
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					<li><a href="{{ path('fos_user_profile_show') }}">{{ '%username%'|trans({'%username%': app.user.username}) }} </a></li>
+					<li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+				{% else %}
+					<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+		
+
+	<div id="message_notice">
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+			{{ flashMessage }}
+		{% endfor %}
+	</div>
+	<div class="container_body">
+		{% block body %}{% endblock %}
+	</div>
+		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>﻿
+    {% block javascripts %}{% endblock %}
+ </body>
+</html>

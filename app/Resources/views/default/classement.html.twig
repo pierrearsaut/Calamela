@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Classement</h1>
+
+	{% for user in users %}
+	<article>
+		<div class="content">
+		<a href="{{ 'user/'~user.id }}">
+		<img src="{{ asset('bundles/AppBundle/img/'~user.photo)}}" width="42"; />		
+		{{ user.username }}
+		</a>
+		</div>
+	</article>
+	<br>
+
+	{% endfor %}
+
+
+{% endblock %}
+
+

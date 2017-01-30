@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Tout les tournois</h1>
+
+	{% for evenement in evenements %}
+	<article>
+		<header>
+			<h2>{{ evenement.nomevent }}</h2>
+		</header>
+		<div class="content">
+			<time>Début du tournoi : {{evenement.debutEvent|date('d m Y') }}</time><br>
+			<time>Fin du tournoi : {{evenement.finEvent|date('d m Y') }}</time><br>
+			Description : {{ evenement.descrEvent }}
+		</div>
+	</article>
+
+	{% endfor %}
+
+
+{% endblock %}
+
+

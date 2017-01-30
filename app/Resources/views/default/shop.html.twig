@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Boutique</h1>
+
+	{% for produit in produits %}
+	<article>
+		<header>
+			<h2>{{ produit.nomProduit }}</h2>
+		</header>
+		<div class="content">
+		lien img : {{ produit.imgProduit }}<br>
+		Description produit : {{ produit.descrProduit }}<br>
+
+		{% if produit.promoProduit > 0 %}
+		Ancien prix : {{ produit.prixProduit }} <br>
+		Nouveau prix : {{ produit.prixProduit - produit.prixProduit * produit.promoProduit}}<br>
+
+		{% else %}
+		Prix : {{ produit.prixProduit }}<br>
+		{% endif %}
+
+		 <img src="{{ asset('bundles/AppBundle/img/'~produit.imgProduit)}}" />
+
+		</div>
+	</article>
+
+	{% endfor %}
+
+
+{% endblock %}
+
+
+

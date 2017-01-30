@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <img src="{{ asset('bundles/AppBundle/img/'~user.photo)}}" /><br>
+    <p>{{ user.descrUser }}</p>
+
+	{% if user.statut == 0 %}
+	lambda <br>
+
+	{% else %}
+	artiste<br>
+	<div class="fb-page" data-href="{{ 'https://www.facebook.com/'~user.widgetFb }}" data-tabs="timeline" data-width="400" data-height="300" data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" data-show-facepile="true"><blockquote cite="{{ 'https://www.facebook.com/'~user.widgetFb }}" class="fb-xfbml-parse-ignore"><a href="{{ 'https://www.facebook.com/'~user.widgetFb }}"></a></blockquote></div>
+
+	{% endif %}
+
+</div>
